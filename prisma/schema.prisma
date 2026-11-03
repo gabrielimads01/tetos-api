@@ -9,7 +9,7 @@ datasource db {
 }
 
 model historico_imovel {
-  id               String     @id @db.Uuid
+  id               String     @id @db.Uuid @default(uuid())
   descricao        String
   data_entrada     DateTime   @db.Date
   data_saida       DateTime   @db.Date
@@ -25,7 +25,7 @@ model historico_imovel {
 }
 
 model historico_manutecao {
-  id        String    @id @db.Uuid
+  id        String    @id @db.Uuid @default(uuid())
   descricao String
   valor     Float
   data      DateTime  @default(dbgenerated("CURRENT_DATE")) @db.Date
@@ -36,7 +36,7 @@ model historico_manutecao {
 }
 
 model historico_manutencaes {
-  id        String    @id @db.Uuid
+  id        String    @id @db.Uuid @default(uuid())
   descricao String
   valor     Float     @default(0)
   data      DateTime  @db.Date
@@ -46,7 +46,7 @@ model historico_manutencaes {
 }
 
 model imoveis {
-  id                  String                @id @db.Uuid
+  id                  String                @id @db.Uuid @default(uuid())
   matricula           Int?
   logrador            String                @db.VarChar(50)
   bairro              String                @db.VarChar(50)
@@ -74,7 +74,7 @@ model imoveis {
 }
 
 model imoveis_tipo {
-  id        String    @id @db.Uuid
+  id        String    @id @db.Uuid @default(uuid())
   nome      String    @db.VarChar(50)
   createdAt DateTime  @default(now()) @db.Timestamp(6)
   updatedAt DateTime? @default(now()) @db.Timestamp(6)
@@ -82,14 +82,14 @@ model imoveis_tipo {
 }
 
 model imoveis_tipos {
-  id        Int       @id @default(autoincrement())
+  id        String       @id @db.Uuid @default(uuid())
   nome      String    @db.VarChar(50)
   createdAt DateTime  @default(now()) @db.Timestamp(6)
   updatedAt DateTime? @default(now()) @db.Timestamp(6)
 }
 
 model locatarios {
-  id               String             @id @db.Uuid
+  id               String             @id @db.Uuid @default(uuid())
   nome             String             @db.VarChar(50)
   telefone         String             @db.VarChar(50)
   cpf_cnpj         String             @unique @db.VarChar(20)
@@ -100,24 +100,16 @@ model locatarios {
 }
 
 model niveis {
-  id        String     @id @db.Uuid
+  id        String     @id @db.Uuid @default(uuid())
   nome      String     @db.VarChar(50)
   createdAt DateTime   @default(now()) @db.Timestamp(6)
   updatedAt DateTime?  @default(now()) @db.Timestamp(6)
   usuarios  usuarios[]
 }
 
-model n_veis {
-  id        Int      @id @default(autoincrement())
-  nome      String   @db.VarChar(50)
-  createdAt DateTime @default(now()) @db.Timestamp(6)
-  updatedAt DateTime @default(now()) @db.Timestamp(6)
-
-  @@map("níveis")
-}
 
 model usuarios {
-  id        String    @id @db.Uuid
+  id        String    @id @db.Uuid @default(uuid())
   nome      String    @db.VarChar(50)
   email     String    @unique @db.VarChar(50)
   senha     String    @db.VarChar(255)

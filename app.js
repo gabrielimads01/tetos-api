@@ -1,8 +1,8 @@
 const express = require("express")
 const cors  = require("cors");
+const niveisRoutes = require("./src/routes/niveisRoutes");
 
 const app = express();
-const niveisRoutes = require("./src/routes/niveisRoutes");
 
 app.use(cors()); //permite que requisições externas acessem as rotas
 app.use(express.json()); //transforma o JSON do corpo da requisição em JS
