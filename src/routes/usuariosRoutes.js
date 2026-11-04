@@ -1,11 +1,12 @@
-const { buscar, criar, editar, deletar } = require("../controllers/imoveisTipoController");
-const { validarDados } = require("../controllers/imoveisTipoController");
-
+const { usuarioAutenticado } = require("../middlewares/usuarioAutenticado");
+const { buscar, criar, editar, deletar } = require("../controllers/usuariosController");
 const rotas = require("express").Router();
 
 rotas.get("/", buscar);
-rotas.post("/", validarDados,criar);
-rotas.put("/:id", validarDados, editar);
+rotas.post("/", criar);
+rotas.put("/:id", editar);
 rotas.delete("/:id", deletar);
+
+
 
 module.exports = rotas;
