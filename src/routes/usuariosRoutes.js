@@ -1,4 +1,3 @@
-const { usuarioAutenticado } = require("../middlewares/usuarioAutenticado");
 const { buscar, criar, editar, deletar } = require("../controllers/usuariosController");
 const rotas = require("express").Router();
 
